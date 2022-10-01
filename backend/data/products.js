@@ -1,81 +1,77 @@
 const products = [
     {
      
-      name: 'Airpods Wireless Bluetooth Headphones',
-      image: '/images/airpods.jpg',
-      description:
-        'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-      brand: 'Apple',
-      category: 'Electronics',
-      price: 89.99,
-      countInStock: 10,
-      rating: 4.5,
-      numReviews: 12,
+      name: '2x4x8 Fir Stud',
+      image: 'https://images.thdstatic.com/productImages/46ab3cfb-6093-435d-a6f0-c991006f05c3/svn/framing-studs-058449-64_100.jpg',
+      description: '1.5" x 3.5" x 96" fir lumber ',
+      price: 4.00,
+      countInStock: 100,
     },
     {
-      name: 'iPhone 11 Pro 256GB Memory',
-      image: '/images/phone.jpg',
+      name: '2x6x8 Fir Stud',
+      image: 'https://images.thdstatic.com/productImages/6e8167f9-7bdc-4fdf-b0b2-2a5c8fbb2f75/svn/framing-lumber-271736-64_1000.jpg',
       description:
-        'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-      brand: 'Apple',
-      category: 'Electronics',
-      price: 599.99,
-      countInStock: 7,
-      rating: 4.0,
-      numReviews: 8,
+        '1.5" x 5.5" x 96" fir lumber',
+      price: 8.00,
+      countInStock: 85,
     },
     {
   
-      name: 'Cannon EOS 80D DSLR Camera',
-      image: '/images/camera.jpg',
-      description:
-        'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-      brand: 'Cannon',
-      category: 'Electronics',
-      price: 929.99,
-      countInStock: 5,
-      rating: 3,
-      numReviews: 12,
+      name: '1/2x4x8 Sheetrock',
+      image: 'https://images.thdstatic.com/productImages/d30a9040-da64-4b10-b5ab-3361582995ad/svn/usg-sheetrock-brand-drywall-sheets-14113411708-66_145.jpg',
+      description: '1/2" thick drywall',
+      price: 8.00,
+      countInStock: 60,
     },
     {
   
-      name: 'Sony Playstation 4 Pro White Version',
-      image: '/images/playstation.jpg',
-      description:
-        'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-      brand: 'Sony',
-      category: 'Electronics',
-      price: 399.99,
-      countInStock: 11,
-      rating: 5,
-      numReviews: 12,
+      name: '1x12x18 Vinyl Trimboard',
+      image: 'https://images.thdstatic.com/productImages/7e68e63f-6edd-4bd1-9471-25c6be6e845e/svn/white-royal-mouldings-general-purpose-moulding-0731112003-64_100.jpg',
+      description: '1x12x18 PVC Lumber',
+      price: 45.00,
+      countInStock: 45,
     },
     {
     
-      name: 'Logitech G-Series Gaming Mouse',
-      image: '/images/mouse.jpg',
-      description:
-        'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-      brand: 'Logitech',
-      category: 'Electronics',
-      price: 49.99,
-      countInStock: 7,
-      rating: 3.5,
-      numReviews: 10,
+      name: 'Generic D4 Vinyl Siding',
+      image: 'https://images.thdstatic.com/productImages/df9a2b0f-9a38-4f1c-8162-1b24816dad83/svn/white-vinyl-siding-pcd4504h-64_100.jpg',
+      description: '8" X 12" pc of white vinyl siding',
+      price: 8.00,
+      countInStock: 120,
     },
     {
     
-      name: 'Amazon Echo Dot 3rd Generation',
-      image: '/images/alexa.jpg',
-      description:
-        'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-      brand: 'Amazon',
-      category: 'Electronics',
-      price: 29.99,
-      countInStock: 0,
-      rating: 4,
-      numReviews: 12,
+      name: '1x6x18 Vinyl Trimboard',
+      image: 'https://images.thdstatic.com/productImages/7e68e63f-6edd-4bd1-9471-25c6be6e845e/svn/white-royal-mouldings-general-purpose-moulding-0731112003-64_100.jpg',
+      description: '3/4" x 5.5" x 18" PVC lumber',
+      price: 25.00,
+      countInStock: 62,
     },
+    {
+    
+      name: '1/2"x4x8 CDX Plywood',
+      image: 'https://images.thdstatic.com/productImages/f8d129e4-eab4-46e0-b1b0-466fd5cf6176/svn/sheathing-plywood-132411-64_145.jpg',
+      description: '1/2"x4x8 sheathing',
+      price: 32.00,
+      countInStock: 200,
+    },
+    {
+    
+      name: '10D 3" Common Nails',
+      image: 'https://images.thdstatic.com/productImages/1c797fc1-879c-410a-a53a-cf7e16230c47/svn/grip-rite-common-nails-10c1-e1_100.jpg',
+      description: '1# box of 3" steel nails',
+      price: 6.50,
+      countInStock: 40,
+    },
+    {
+    
+      name: 'GAF Roofing bundle',
+      image: 'https://images.thdstatic.com/productImages/be261cff-e499-40c0-886b-daaaa39c5fcf/svn/charcoal-gaf-roof-shingles-0489180-64_100.jpg',
+      description: 'charcoal roofing 3bdl per sq',
+      price: 34.00,
+      countInStock: 99,
+    },
+    
   ]
 export default products
   

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const orderSchema = mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -13,7 +13,7 @@ const orderSchema = mongoose.Schema({
             image: {type: String, required: true },
             price: {type: Number, required: true },
             product: {
-                    type: mongoose.Types.Schema.ObjectId,
+                    type: mongoose.Schema.Types.ObjectId,
                      required: true,
                       ref: 'Product' 
                     }
