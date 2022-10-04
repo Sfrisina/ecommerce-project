@@ -1,15 +1,25 @@
 import {configureStore} from '@reduxjs/toolkit'
+import {combineReducers} from 'redux'
 import {productListReducer, productDetailsReducer} from './reducers/productReducers'
+import {cartReducer} from './reducers/cartReducer'
 
-const reducer = {
+const reducer = combineReducers({
     productList: productListReducer, 
-    productDetails: productDetailsReducer, 
+    productDetails: productDetailsReducer,
+    cart : cartReducer,
 
+})
+
+const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse
+(localStorage.getItem('cartItem')) : []
+
+const initialState = {
+    cart: {cartItems: cartItemsFromStorage }
 }
-
 
 const store  = configureStore({
     reducer, 
+    initialState, 
     devTools: process.env.NODE_ENV !== 'production',
 })
 
