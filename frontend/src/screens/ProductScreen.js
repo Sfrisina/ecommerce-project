@@ -1,28 +1,42 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
-import {Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import Rating from '../components/Rating'
-import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {Row, Col, Image, ListGroup, ListGroupItem, Card, Button } from 'react-bootstrap'
+import { listProductDetails } from '../actions/productActions'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
-const ProductScreen = () => {
-    const { id } = useParams()
-    const [product, setProduct] = useState({})
+
+ const ProductScreen = () => {
+    const navigate = useNavigate()
+    const [qty, setQty] = useState(0);
+    const params = useParams()
+    const dispatch = useDispatch()
+
+    
+
+    const productDetails = useSelector((state) => state.productDetails)
+    // console.log(productDetails)
+
+    const { loading, error, product } = productDetails
+    // console.log(product)
+
+   
 
     useEffect(() => {
-        const getProducts = async () => {
-            const {data} = await axios.get(`/api/products/${id}`)
+        dispatch(listProductDetails(params.id))
+    }, [dispatch, params])
 
-         setProduct(data)
-        }
-        getProducts()
-    }, [])
+   
 
 
     return (
       <>
-        <Link className='btn btn-primary my-3' to='/'>
+        <Link className='btn btn-primary my-3' to={'/'}>
           Go Back
         </Link>
+        {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>): (
      <Row>
          <Col md={6}>
              <Image src={product.image} alt ={product.name} fluid />
@@ -66,8 +80,10 @@ const ProductScreen = () => {
             </Card>
         </Col>
     </Row>
+    )}
     </>
     )
+    
 }
 
 export default ProductScreen
