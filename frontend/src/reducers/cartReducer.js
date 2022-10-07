@@ -23,3 +23,4 @@ export const cartReducer = (state = {cartItems: []}, action) => {
         return state
     }
 }
+

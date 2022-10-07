@@ -11,7 +11,7 @@ const reducer = combineReducers({
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse
-(localStorage.getItem('cartItem')) : []
+(localStorage.getItem('cartItems')) : []
 
 const initialState = {
     cart: {cartItems: cartItemsFromStorage }
@@ -22,6 +22,8 @@ const store  = configureStore({
     initialState, 
     devTools: process.env.NODE_ENV !== 'production',
 })
+
+
 
 
 export default store
