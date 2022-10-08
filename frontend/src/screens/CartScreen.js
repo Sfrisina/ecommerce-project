@@ -26,7 +26,7 @@ const CartScreen = () => {
     }, [dispatch, id, qty, navigate] )
 
     const removeFromCartHandler = (id) => {
-        console.log('remove')
+        dispatch(removeFromCart(id))
     }
    
   const checkoutHandler = () => {
@@ -64,7 +64,7 @@ const CartScreen = () => {
                         </Form.Control>
                                 </Col>
                                 <Col md={2}>
-                                    <Button type='button' variant='light' onClick={() => removeFromCartHandler(item.price) }>
+                                    <Button type='button' variant='light' onClick={() => removeFromCartHandler(item.product) }>
                                         <i className="fas fa-trash"></i>
                                     </Button>
                                 </Col>
