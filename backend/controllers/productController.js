@@ -3,7 +3,7 @@ import Product from '../models/Product.js'
 
 
 // returns all products 
-const getProducts = asyncHandler(async(creq, res) => {
+const getProducts = asyncHandler(async(req, res) => {
 const products = await Product.find({})
 
 res.json(products)

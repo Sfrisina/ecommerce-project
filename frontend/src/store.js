@@ -3,6 +3,7 @@ import {combineReducers} from 'redux'
 import {productListReducer, productDetailsReducer} from './reducers/productReducers'
 import {cartReducer} from './reducers/cartReducer'
 import {userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer} from './reducers/userReducers'
+import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers'
 
 
 const reducer = combineReducers({
@@ -13,6 +14,8 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer, 
     userUpdateProfile: userUpdateProfileReducer,
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
 
 })
 
@@ -22,14 +25,18 @@ const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse
 (localStorage.getItem('userInfo')) : null
 
+const shippinAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse
+(localStorage.getItem('shippingAddress')) : {}
+
 const initialState = {
-    cart: {cartItems: cartItemsFromStorage }, 
+    cart: {cartItems: cartItemsFromStorage ,
+    shippingAddress: shippinAddressFromStorage},
     userLogin: {userInfo: userInfoFromStorage}
 }
 
 const store  = configureStore({
     reducer, 
-    initialState, 
+    preloadedState:initialState, 
     devTools: process.env.NODE_ENV !== 'production',
 })
 
