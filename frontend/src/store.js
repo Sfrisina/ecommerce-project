@@ -3,7 +3,7 @@ import {combineReducers} from 'redux'
 import {productListReducer, productDetailsReducer} from './reducers/productReducers'
 import {cartReducer} from './reducers/cartReducer'
 import {userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer} from './reducers/userReducers'
-import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers'
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers'
 
 
 const reducer = combineReducers({
@@ -16,6 +16,8 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    orderListMY: orderListMyReducer,
 
 })
 
@@ -27,6 +29,8 @@ const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse
 
 const shippinAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse
 (localStorage.getItem('shippingAddress')) : {}
+
+
 
 const initialState = {
     cart: {cartItems: cartItemsFromStorage ,
