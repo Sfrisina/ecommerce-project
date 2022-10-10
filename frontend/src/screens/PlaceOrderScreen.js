@@ -5,42 +5,55 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
+import { saveOrderInfo } from '../actions/cartActions'
 
 const PlaceOrderScreen = () => {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
     const navigate = useNavigate()
-    const addDecimals = (num) => {
-        return (Math.round(num * 100) / 100 ).toFixed(2)
-    }
-    
 
-    cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
-    cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 10)
-    cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
-    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
+
+    let itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    let shippingPrice = itemsPrice > 100 ? 0 : 100
+    let taxPrice = 0.13 * itemsPrice 
+    let totalPrice = itemsPrice + taxPrice + shippingPrice
+
 
     const orderCreate= useSelector(state => state.orderCreate)
     const { order, success, error} = orderCreate
+ 
   
+    
+
+      
+      console.log(cart)
+
+
+    const placeOrderHandler = () => {
+        dispatch(
+            createOrder({
+            orderItems: cart.cartItems, 
+            shippingAddress: cart.shippingAddress, 
+            paymentMethod: cart.paymentMethod, 
+            itemsPrice: cart.orderInfo.itemsPrice, 
+            shippingPrice: cart.orderInfo.shippingPrice, 
+            taxPrice: cart.orderInfo.taxPrice, 
+            totalPrice: cart.orderInfo.totalPrice, 
+        })
+        )
+    }
     useEffect(() => {
         if (success) {
           navigate(`/order/${order._id}`);
         }
+        dispatch(saveOrderInfo({itemsPrice, shippingPrice, taxPrice, totalPrice})
+        )
         // eslint-disable-next-line
       }, [success]);
 
-    const placeOrderHandler = () => {
-        dispatch(createOrder({
-            orderItems: cart.cartItems, 
-            shippingAddress: cart.shippingAddress, 
-            paymentMethod: cart.paymentMethod, 
-            itemsPrice: cart.itemsPrice, 
-            shippingPrice: cart.shippingPrice, 
-            taxPrice: cart.taxPrice, 
-            totalPrice: cart.totalPrice, 
-        }))
-    }
+
+        
+
     return (
          <>
          <CheckoutSteps step1 step2 step3 step4 />
@@ -89,25 +102,25 @@ const PlaceOrderScreen = () => {
                     <ListGroup.Item>
                         <Row>
                             <Col>Items</Col>
-                            <Col>${cart.itemsPrice}</Col>
+                            <Col>${itemsPrice.toFixed(2)}</Col>
                         </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <Row>
                             <Col>Shipping</Col>
-                            <Col>${cart.shippingPrice}</Col>
+                            <Col>${shippingPrice.toFixed(2)}</Col>
                         </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <Row>
                             <Col>Tax</Col>
-                            <Col>${cart.taxPrice}</Col>
+                            <Col>${taxPrice.toFixed(2)}</Col>
                         </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
                         <Row>
                             <Col>Total</Col>
-                            <Col>${cart.totalPrice}</Col>
+                            <Col>${totalPrice.toFixed(2)}</Col>
                         </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
@@ -124,5 +137,6 @@ const PlaceOrderScreen = () => {
 
     )
 }
+
 
 export default PlaceOrderScreen

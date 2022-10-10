@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import {Link, useParams, useLocation, useNavigate} from 'react-router-dom'
-import {Container, Row, Col, ListGroup, Image, Form, Button, Card, ListGroupItem} from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from "../components/Message"
 import{addToCart, removeFromCart} from '../actions/cartActions'
