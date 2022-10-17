@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import axios from 'axios'
-import {PayPalButton} from 'react-paypal-button-v2'
+import {PayPalButtons} from '@paypal/react-paypal-js'
  import { ORDER_PAY_RESET } from '../constants/orderConstants'
  import { ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
@@ -164,7 +164,7 @@ const OrderScreen = () => {
                   {!sdkReady ? (
                     <Loader />
                   ) : (
-                    <PayPalButton
+                    <PayPalButtons
                       amount={order.totalPrice}
                       onSuccess={successPaymentHandler}
                     />
