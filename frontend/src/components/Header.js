@@ -1,8 +1,10 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import{Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
 import {logout} from '../actions/userActions'
+import SearchBox from './SearchBox'
 
 
 
@@ -10,6 +12,7 @@ const Header = () => {
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -23,6 +26,7 @@ const Header = () => {
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          <SearchBox />
           <Nav className='ms-auto'>
             <LinkContainer to='/cart'>
             <Nav.Link><i className='fas fa-shopping-cart'></i>Cart</Nav.Link>
@@ -45,7 +49,7 @@ const Header = () => {
                  <LinkContainer to='/admin/userlist'>
                    <NavDropdown.Item>Users</NavDropdown.Item>
                  </LinkContainer>
-                 <LinkContainer to='/admin/productList'>
+                 <LinkContainer to='/admin/productlist'>
                    <NavDropdown.Item>Products</NavDropdown.Item>
                    </LinkContainer>
                  <LinkContainer to='/admin/orderlist'>
