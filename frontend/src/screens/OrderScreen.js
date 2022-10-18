@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import axios from 'axios'
-import {PayPalButtons} from '@paypal/react-paypal-js'
+import {PayPalButton} from 'react-paypal-button-v2'
  import { ORDER_PAY_RESET } from '../constants/orderConstants'
  import { ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
@@ -70,8 +70,10 @@ const OrderScreen = () => {
         }else if (!order.isPaid) {
             if(!window.paypal){
                 addPayPalScript()
+                console.log(order)
             }else{
                 setSdkReady(true)
+                
             }
         }
       }, [order, orderId, dispatch, successPay, successDeliver, userInfo]);
@@ -83,6 +85,7 @@ const OrderScreen = () => {
       const deliverHandler = () => {
         dispatch(deliverOrder(order))
       }
+      
 
     return  loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : <>
     <h1>Order {order._id}</h1>
@@ -164,10 +167,12 @@ const OrderScreen = () => {
                   {!sdkReady ? (
                     <Loader />
                   ) : (
-                    <PayPalButtons
+                   
+                    <PayPalButton
                       amount={order.totalPrice}
                       onSuccess={successPaymentHandler}
                     />
+            
                   )}
                 </ListGroup.Item>
                     )} 
