@@ -22,7 +22,8 @@ USER_DELETE_FAIL,
 USER_UPDATE_REQUEST,
 USER_UPDATE_SUCCESS,
 USER_UPDATE_FAIL,
-USER_UPDATE_RESET} from '../constants/userConstant'
+USER_UPDATE_RESET,
+USER_UPDATE_PROFILE_RESET} from '../constants/userConstant'
 
 export const userLoginReducer = 
 
@@ -81,7 +82,8 @@ export const userUpdateProfileReducer =
             return {loading: false, success: true, userInfo: action.payload}
         case USER_UPDATE_PROFILE_FAIL:
             return {loading: false, error: action.payload}
-
+        case USER_UPDATE_PROFILE_RESET:
+            return {}
         default: 
             return state
     }

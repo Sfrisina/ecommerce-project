@@ -113,7 +113,7 @@ const ProductEditScreen = () => {
              onChange={(e) => setPrice(e.target.value)}>
              </Form.Control>
       </Form.Group>
-      <Form.Group controlId='image'
+      <Form.Group controlId='formfileMultiple'
        className='my-3'>
       <Form.Label>Image</Form.Label>
           <Form.Control type='text'
@@ -121,7 +121,7 @@ const ProductEditScreen = () => {
              value={image}
               onChange={(e) => setImage(e.target.value)}>
               </Form.Control>
-              <Form.Control  type='file' onChange={uploadFileHandler}> 
+              <Form.Control  type='file' accept="image/jpg, image/jpeg, image/png" label="choose file" multiple='true' onChange={uploadFileHandler}> 
               </Form.Control>
               {uploading && <Loader />}
       </Form.Group>
