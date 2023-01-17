@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import {Link, useParams, useNavigate} from 'react-router-dom'
 import {Form, Button} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,6 +17,7 @@ const ProductEditScreen = () => {
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [countInStock, setCountInStock] = useState(0)
+    const [uploading, setUploading] = useState(false)
 
     const params = useParams()
     const productId = params.id
@@ -51,15 +53,36 @@ const ProductEditScreen = () => {
               }}
         } , [product, dispatch, productId, navigate, successUpdate])
 
+        const uploadFileHandler = async (e) => {
+            const file = e.target.files[0]
+            const formData = new FormData()
+            formData.append('image', file)
+            setUploading(true)
+
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+                const {data} = await axios.post('/api/upload', formData, config)
+                setImage(data)
+                setUploading(false)
+            }catch (error) {
+                console.error(error)
+                setUploading(false)
+            }
+        }
+
+
     const submitHandler  = (e) => {
         e.preventDefault()
         dispatch(updateProduct({
             _id: productId, 
             name, price, image, description, countInStock
         }))
-     
-  
 }
+
 
 
 
@@ -98,6 +121,9 @@ const ProductEditScreen = () => {
              value={image}
               onChange={(e) => setImage(e.target.value)}>
               </Form.Control>
+              <Form.Control  type='file' onChange={uploadFileHandler}> 
+              </Form.Control>
+              {uploading && <Loader />}
       </Form.Group>
       <Form.Group controlId='description' className='my-3'>
       <Form.Label>Description</Form.Label>
